@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import yupValidation from '../../yup';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
@@ -18,10 +18,10 @@ export default function Login() {
         verifyPassword: ''
     };
 
-    const onSubmit = (values, event) => {
+    const onSubmit = async (values, event) => {
         event.preventDefault();
-        console.log(values);
-        navigate('/home');
+        await console.log(values);
+        navigate('/home', {replace: true});
     };
 
     return (
