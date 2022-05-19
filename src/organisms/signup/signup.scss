@@ -1,6 +1,18 @@
 .signup-container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 800px;
     align-items: center;
+}
+
+.signup-form-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+        button {
+            align-self: flex-end;
+            flex-basis: 210px;
+        }
 }

@@ -27,15 +27,17 @@ export default function Login() {
     return (
         <Formik initialValues={initialValues} validationSchema={yupValidation} onSubmit={onSubmit}>
             {({ isSubmitting, isValid }) => (
-                <Form className='signup-container'>
-                    <Input name='name' type='text' label='Name' />
-                    <Input name='surname' type='text' label='Surname' />
-                    <Input name='phoneNumber' type='text' label='Phone Number' />
-                    <Input name='address' type='text-area' label='Address' />
-                    <Input name='password' type='password' label='Password' />
-                    <Input name='verifyPassword' type='password' label='Verify Password' />
-                    <Button title="Submit" type='submit' disabled={!isValid || isSubmitting} />
-                </Form>
+                <div className='signup-container'>
+                    <Form className='signup-form-container'>
+                        <Input name='name' type='text' label='Name' />
+                        <Input name='surname' type='text' label='Surname' />
+                        <Input name='phoneNumber' type='text' label='Phone Number' />
+                        <Input name='address' type='text-area' label='Address' />
+                        <Input name='password' type='password' label='Password' />
+                        <Input name='verifyPassword' type='password' label='Verify Password' />
+                        <Button title='Submit' type='submit' disabled={!isValid || isSubmitting} />
+                    </Form>
+                </div>
             )}
         </Formik>
     );
