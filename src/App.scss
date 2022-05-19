@@ -1,5 +1,13 @@
 //root
 @import './scss/Variables.scss';
-//atoms
-@import './scss/Buttons.scss';
 
+//atoms
+@import './atoms/button/Buttons.scss';
+@import './atoms/input/input.scss';
+
+//organisms
+@import './organisms/login/login.scss';
+@import './organisms/signup/signup.scss';
+
+//pages 
+@import './pages/login/LoginPage.scss';

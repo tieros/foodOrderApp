@@ -1,0 +1,12 @@
+.link-text {
+    cursor: pointer;
+    color: rgb(182, 40, 15)
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
