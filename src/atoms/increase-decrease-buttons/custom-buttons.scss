@@ -1,11 +1,15 @@
-.inc-dec-buttons 
+.inc-dec-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 170px;
+
         button {
             font: inherit;
             cursor: pointer;
             background-color: tomato;
             border: 1px solid tomato;
             color: white;
-            padding: 0.25rem 2rem;
+            padding: 0.1rem 1.5rem;
             border-radius: 20px;
             font-weight: bold;
                 :hover, :active {
@@ -13,4 +17,4 @@
                  border-color: #641e03;
                 }
 }
-
+}
