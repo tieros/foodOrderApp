@@ -4,10 +4,10 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     width: 300px;
     height: 90px;
-    
+    margin: 4px;
+
         input {
             border-radius: 4px;
             color: rgb(39, 37, 37);
@@ -15,10 +15,21 @@
             border:1 px solid gray;
             border-width: 1px;
             height: 20px;
+            margin: 10px 0 2px;
         }
         &input:focus-visible {
         outline: black auto 1px;
-}
+        }
+
+        label {
+            height: 20px;
+        }
+
+        textarea {
+            margin-top: 10px;
+            border-radius: 4px;
+            height: 60px;
+        }
 }
 
 .error-message {
