@@ -5,6 +5,7 @@ export default function Navbar(){
         <nav className='navbar'>
             <p className='logo'>Logo</p>
             <ul>
+                <Link to='/'> Menu </Link>
                 <Link to='login'> Login </Link>
                 <Link to='cart'> Cart </Link>
             </ul>

@@ -2,8 +2,10 @@
 @import './scss/Variables.scss';
 
 //atoms
-@import './atoms/button/Buttons.scss';
+@import './atoms/button/buttons.scss';
 @import './atoms/input/input.scss';
+@import './atoms/card/card.scss';
+@import './atoms/increase-decrease-buttons/custom-buttons.scss';
 
 //organisms
 @import './organisms/login/login.scss';
