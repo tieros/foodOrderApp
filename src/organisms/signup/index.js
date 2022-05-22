@@ -61,16 +61,16 @@ export default function Login() {
                             className={errors.phone && touched.phone && 'invalid'}
                         />
                         <Input
-                            name='address'
-                            type='text-area'
-                            label='Address'
-                            className={errors.address && touched.address && 'invalid'}
-                        />
-                        <Input
                             name='email'
                             type='email'
                             label='E-mail'
                             className={errors.email && touched.email && 'invalid'}
+                        />
+                        <Input
+                            name='address'
+                            type='text-area'
+                            label='Address'
+                            className={errors.address && touched.address && 'invalid'}
                         />
                         <Input
                             name='password'
