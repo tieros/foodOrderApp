@@ -1,0 +1,30 @@
+.signup-container {
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    height: 100%;
+}
+
+.signup-form-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 600px;
+    
+    div {
+       flex-basis: 45%;
+       
+       &:nth-child(5){
+           flex-basis: 90%;
+       }
+    } 
+        button {
+            align-self: flex-end;
+            flex-basis: 210px;
+            margin-top: 10px;
+            flex-basis: 45%;
+        }
+}
+

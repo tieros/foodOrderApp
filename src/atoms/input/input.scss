@@ -1,0 +1,47 @@
+.invalid {
+    border: 1px solid tomato;
+}
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    height: 90px;
+    margin: 4px;
+    
+    &:nth-child(5){
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+
+        input {
+            border-radius: 4px;
+            color: rgb(39, 37, 37);
+            background-color: white;
+            border:1 px solid gray;
+            border-width: 1px;
+            width: 250px;
+            height: 20px;
+            margin: 10px 0 2px;
+        }
+        &input:focus-visible {
+        outline: black auto 1px;
+        }
+
+        label {
+            height: 20px;
+            width: 250px;
+        }
+
+        textarea {
+            margin-top: 10px;
+            border-radius: 4px;
+            height: 50px;
+        }
+}
+
+.error-message {
+    font-size: 0.8rem;
+    color: tomato
+}
+
