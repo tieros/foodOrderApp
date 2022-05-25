@@ -11,7 +11,7 @@ export default function Cart() {
 
     const dbRef = ref(database);
     const uid = useSelector((state) => state.auth.uid);
-    const cartItems = useSelector((state) => state.cart.cartItems);
+    const cartItems = useSelector((state) => state.cart.items);
     const totalAmountStore = useSelector((state) => state.cart.totalAmount);
     const dispatch = useDispatch();
 
