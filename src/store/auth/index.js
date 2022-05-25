@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isLoggedIn: false,
     errorMessage: '',
+    uid: ''
 };
 
 const authSlice = createSlice({
@@ -14,6 +15,9 @@ const authSlice = createSlice({
         },
         setErrorMessage(state, action){
             state.errorMessage = action.payload;
+        },
+        setUid(state, action){
+            state.uid = action.payload;
         }
     }
 });

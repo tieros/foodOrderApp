@@ -1,5 +1,9 @@
-import CustomButtons from '../../atoms/increase-decrease-buttons'
+import MainText from '../../molecules/mainText';
+import MealsList from '../../organisms/mealsList';
 
 export default function Home(){
-    return <><h1>Home</h1><CustomButtons /></>
+    return <>
+    <MainText />
+    <MealsList />
+    </>
 }

@@ -18,13 +18,14 @@ export const signUp = async (email, password, name, surname, phone, address) => 
             address,
         });
 
-    return sendToDb;
+    return { sendToDb, uid };
 }
 
 export const login = (email, password) => {
 
         const login =  signInWithEmailAndPassword(auth, email, password);
-        return login;
+        const uid = login.user.uid;
+        return { login, uid };
 
 };
 

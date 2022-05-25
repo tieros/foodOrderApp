@@ -7,10 +7,16 @@
 @import './atoms/card/card.scss';
 @import './atoms/increase-decrease-buttons/custom-buttons.scss';
 
+// molecules
+@import './molecules/cartItem/cartItem.module.scss';
+@import './molecules/mainText/mainText.module.scss';
+
 //organisms
 @import './organisms/login/login.scss';
 @import './organisms/signup/signup.scss';
 @import './organisms/navbar/navbar.scss';
 
 //pages 
-@import './pages/login/LoginPage.scss';
+@import './pages/login/loginPage.scss';
+@import './pages/cart/cartpage.scss';
+@import './pages/home/homePage.scss';

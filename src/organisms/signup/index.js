@@ -29,7 +29,9 @@ export default function Login() {
         const { name, surname, phone, address, email, password } = values;
         try {
             signUp(email, password, name, surname, phone, address);
+            const { uid } = signUp();
             dispatch(authActions.setIsLoggedIn(true));
+            dispatch(authActions.setUid(uid));
             navigate('/home');
         } catch (error) {
             console.log(error);

@@ -4,10 +4,13 @@ import Button from '../../atoms/button';
 import yupValidation from '../../yup';
 import { login } from '../../service/auth';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth';
 
 export default function Login() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const initialValues = {
         email: '',
@@ -18,7 +21,9 @@ export default function Login() {
 
         const { email, password } = values;
         try {
-            await login(email, password);
+            login(email, password);
+            const { uid } = login();
+            dispatch(authActions.setUid(uid));
             navigate('/');
 
         } catch (error) {
