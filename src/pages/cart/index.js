@@ -11,11 +11,12 @@ export default function Cart() {
 
     const dbRef = ref(database);
     const uid = useSelector((state) => state.auth.uid);
-    const cartItems = useSelector((state) => state.cart.cartItems);
+    const cartItems = useSelector((state) => state.cart.items);
     const totalAmountStore = useSelector((state) => state.cart.totalAmount);
     const dispatch = useDispatch();
 
-    const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
+    // const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
+    const totalAmount = totalAmountStore;
     const hasItems = cartItems?.length > 0;
 
     useEffect(() => {
