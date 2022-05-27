@@ -15,7 +15,8 @@ export default function Cart() {
     const totalAmountStore = useSelector((state) => state.cart.totalAmount);
     const dispatch = useDispatch();
 
-    const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
+    // const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
+    const totalAmount = totalAmountStore;
     const hasItems = cartItems?.length > 0;
 
     useEffect(() => {

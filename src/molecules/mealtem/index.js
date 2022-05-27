@@ -8,25 +8,24 @@ import style from './mealItem.module.scss';
     const { id, name, price, description } = props;
     const dispatch = useDispatch();
 
-    const addToCartHandler = (amount) => {
+    const sendToCartHandler = (amount) => {
          dispatch(
-             cartActions.addCartItem({
+             cartActions.sendToCart({
                  id,
-                 name,
                  amount,
                  price,
              }),
          );
      }
 
-     const removeFromCartHandler = (amount) => {
-        dispatch(
-            cartActions.removeCartItem({
-                id,
-                amount,
-                price
-            }),
-        )};
+    //  const removeFromCartHandler = (amount) => {
+    //     dispatch(
+    //         cartActions.removeCartItem({
+    //             id,
+    //             amount,
+    //             price
+    //         }),
+    //     )};
 
        return (
            <li className={style.meal}>
@@ -36,7 +35,9 @@ import style from './mealItem.module.scss';
                    <div className={style.price}>{price}</div>
                </div>
                <div>
-                   <CustomButton id={id} onAddToCart={addToCartHandler} onRemoveCart={removeFromCartHandler}/>
+                   <CustomButton id={id} onAddToCart={sendToCartHandler} 
+                //    onRemoveCart={removeFromCartHandler}
+                />
                </div>
            </li>
        );

@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 
 export default function IncreaseDecrease(props){
 
-let storedAmount = useSelector(state => state.cart.items[0]?.amount);
+// let storedAmount = useSelector(state => state.cart.items.find(item => item.id === props.id));
+// console.log(storedAmount + 'storedAmount')
+// if (isNaN(storedAmount)) {
+//     storedAmount = 0
+// }
 
-if (isNaN(storedAmount)) {
-    storedAmount = 0
-}
-
-const [amount, setAmount] = useState(storedAmount);
+const [amount, setAmount] = useState(0);
 
 
 const increaseAmount = () => {
@@ -18,18 +18,19 @@ const increaseAmount = () => {
     setAmount(5);
     return;
     }
-    setAmount(amount + 1 );
-    props.onAddToCart(amount);
+     setAmount(prev => prev + 1);
 }
 
 const decreaseAmount = () => {
     if(amount >= 1){
     setAmount(amount - 1);
-    props.onRemoveCart(amount);
     } else return;
 }
 
-console.log(amount)
+useEffect(() => {
+    props.onAddToCart(amount);
+}, [amount, props]);
+
     return (
         <div className='inc-dec-buttons'>
             <button onClick={increaseAmount}> + </button>
@@ -40,7 +41,6 @@ console.log(amount)
                 onChange={(e) => setAmount(e.target.value)}
                 type='number'
             />
-            <span>{amount}</span>
             <button onClick={decreaseAmount}> - </button>
 
         </div>
