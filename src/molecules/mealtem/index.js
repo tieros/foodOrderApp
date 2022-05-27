@@ -18,6 +18,16 @@ import style from './mealItem.module.scss';
              }),
          );
      }
+
+     const removeFromCartHandler = (amount) => {
+        dispatch(
+            cartActions.removeCartItem({
+                id,
+                amount,
+                price
+            }),
+        )};
+
        return (
            <li className={style.meal}>
                <div>
@@ -26,7 +36,7 @@ import style from './mealItem.module.scss';
                    <div className={style.price}>{price}</div>
                </div>
                <div>
-                   <CustomButton id={id} onAddToCart={addToCartHandler} />
+                   <CustomButton id={id} onAddToCart={addToCartHandler} onRemoveCart={removeFromCartHandler}/>
                </div>
            </li>
        );
