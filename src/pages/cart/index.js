@@ -36,11 +36,9 @@ export default function Cart() {
     };
 
     const cartItemAddHandler = (item) => {
-        dispatch(cartActions.addCartItem(item));
+        dispatch(cartActions.sendToCart(item));
     };
-    const cartItemRemoveHandler = (item) => {
-        dispatch(cartActions.removeCartItem(item));
-    };
+
     const cartItemsList = (
         <ul className='cart-items'>
             {cartItems?.map((item) => (
@@ -49,14 +47,13 @@ export default function Cart() {
                     name={item.name}
                     amount={item.amount}
                     price={item.price}
-                    onRemove={cartItemRemoveHandler.bind(null, item.id)}
                     onAdd={cartItemAddHandler.bind(null, item)}
                 />
             ))}
         </ul>
     );
     return (
-        <>
+        <div className='cart-page-container'>
             {cartItemsList}
             <div className='total'>
                 <span>Total Amount</span>
@@ -66,6 +63,6 @@ export default function Cart() {
             <Button onClick={submitOrder}  disabled={!hasItems} title='Order'>
                 Order
             </Button>
-        </>
+        </div>
     );
 }
