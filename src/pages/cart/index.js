@@ -12,11 +12,18 @@ export default function Cart() {
     const dbRef = ref(database);
     const uid = useSelector((state) => state.auth.uid);
     const cartItems = useSelector((state) => state.cart.items);
-    const totalAmountStore = useSelector((state) => state.cart.totalAmount);
+
     const dispatch = useDispatch();
 
     // const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
-    const totalAmount = totalAmountStore;
+    const getTotalAmount = () => {
+        let totalAmount = 0;
+        for (let i = 0; i < cartItems.length; i++) {
+            totalAmount += cartItems[i].price * cartItems[i].amount;
+        }
+        return totalAmount;
+    };
+
     const hasItems = cartItems?.length > 0;
 
     useEffect(() => {
@@ -57,9 +64,8 @@ export default function Cart() {
             {cartItemsList}
             <div className='total'>
                 <span>Total Amount</span>
-                <span>{totalAmount}</span>
+                <span>{getTotalAmount()}</span>
             </div>
-
             <Button onClick={submitOrder}  disabled={!hasItems} title='Order'>
                 Order
             </Button>
