@@ -3,18 +3,37 @@
     justify-content: space-evenly;
     width: 170px;
 
-        button {
-            font: inherit;
-            cursor: pointer;
-            background-color: tomato;
-            border: 1px solid tomato;
-            color: white;
-            padding: 0.1rem 1.5rem;
-            border-radius: 20px;
-            font-weight: bold;
-                :hover, :active {
-                 background-color: #641e03;
-                 border-color: #641e03;
-                }
+    button {
+        font: inherit;
+        cursor: pointer;
+        background-color: tomato;
+        border: 1px solid tomato;
+        color: white;
+        padding: 0.1rem 1.5rem;
+        border-radius: 20px;
+        font-weight: bold;
+            :hover, :active {
+                background-color: #641e03;
+                border-color: #641e03;
+            }
+        }
+
+    input {
+        width: 50px;
+        text-align: center;
+        border: 1px solid gray;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    //remove arrows from number input
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    margin: 0;
+    input[type=number] {
+    -moz-appearance: textfield;
 }
 }
+}
+
