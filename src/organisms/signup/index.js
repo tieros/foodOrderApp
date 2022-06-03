@@ -1,13 +1,12 @@
 import { ref, set, child } from 'firebase/database';
 import { database } from '../../firebase';
-import { Formik, Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
-import yupValidation from '../../yup';
 import { signUp } from '../../service/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../../store/auth';
+import useForm from "../../customhooks/useForm";
 
 
 export default function Login() {
@@ -25,7 +24,9 @@ export default function Login() {
         verifyPassword: ''
     };
 
-    const onSubmit = (values) => {
+    const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
+
+    const submitHandler = () => {
         const { name, surname, phone, address, email, password } = values;
         try {
             signUp(email, password, name, surname, phone, address);
@@ -39,57 +40,84 @@ export default function Login() {
         }
     };
 
+    console.log(errors.verifyPassword)
+
     return (
-        <Formik initialValues={initialValues} validationSchema={yupValidation} onSubmit={onSubmit}>
-            {({ isValid, isSubmitting, errors, touched }) => (
                 <div className='signup-container'>
-                    <Form className='signup-form-container'>
+                    <form className='signup-form-container' onSubmit={submitHandler}>
                         <Input
+                            id="signup-name"
                             name='name'
                             type='text'
                             label='Name'
-                            className={errors.name && touched.name && 'invalid'}
+                            value={values.name}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.name}
                         />
                         <Input
+                            id="signup-surname"
                             name='surname'
                             type='text'
                             label='Surname'
-                            className={errors.surname && touched.surname && 'invalid'}
+                            value={values.surname}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.surname}
                         />
                         <Input
+                            id="signup-phone"
                             name='phone'
                             type='text'
                             label='Phone Number'
-                            className={errors.phone && touched.phone && 'invalid'}
+                            placeholder="555 555 55 55"
+                            value={values.phone}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.phone}
                         />
                         <Input
+                            id="signup-email"
                             name='email'
                             type='email'
                             label='E-mail'
-                            className={errors.email && touched.email && 'invalid'}
+                            value={values.email}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.email}
                         />
                         <Input
+                            id="signup-address"
                             name='address'
                             type='text-area'
                             label='Address'
-                            className={errors.address && touched.address && 'invalid'}
+                            value={values.address}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.address}
                         />
                         <Input
+                            id="signup-password"
                             name='password'
                             type='password'
                             label='Password'
-                            className={errors.password && touched.password && 'invalid'}
+                            value={values.password}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.password}
                         />
                         <Input
+                            id="signup-verifyPassword"
                             name='verifyPassword'
                             type='password'
                             label='Verify Password'
-                            className={errors.verifyPassword && touched.verifyPassword && 'invalid'}
+                            value={values.verifyPassword}
+                            onBlur={validateValue}
+                            onChange={handleChange}
+                            error={errors.verifyPassword}
                         />
-                        <Button title='Submit' type='submit' disabled={!isValid || isSubmitting} />
-                    </Form>
+                        <Button title='Submit' type='submit' disabled={disabled} />
+                    </form>
                 </div>
-            )}
-        </Formik>
     );
 }

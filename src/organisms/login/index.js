@@ -1,25 +1,24 @@
-import { Formik, Form } from 'formik';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
-import yupValidation from '../../yup';
 import { login } from '../../service/auth';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
+import useForm from '../../customhooks/useForm';
 
 export default function Login() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const initialValues = {
-        email: '',
-        password : ''
-    };
+    const initialValues = {email: '', password: ''};
 
-    const onSubmit = async (values) => {
+    const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
+    const submitHandler = async (e) => {
+        e.preventDefault();
         const { email, password } = values;
+        console.log(email)
         try {
             login(email, password);
             const { uid } = login();
@@ -31,25 +30,35 @@ export default function Login() {
         }
     };
 
+    const forgotPasswordHandler = () => {
+        
+    }
+
+
     return (
-        <Formik initialValues={initialValues} validationSchema={yupValidation} onSubmit={onSubmit}>
-            {({ isSubmitting, isValid, errors, touched }) => (
-                <Form className='login-container'>
-                    <Input
-                        name='email'
-                        type='e-mail'
-                        label='E-mail'
-                        className={errors.email && touched.email &&'invalid'}
-                    />
-                    <Input
-                        name='password'
-                        type='password'
-                        label='Password'
-                        className={errors.password && touched.password && 'invalid'}
-                    />
-                    <Button title='Submit' type='submit' disabled={!isValid || isSubmitting} />
-                </Form>
-            )}
-        </Formik>
+        <form className='login-container' onSubmit={submitHandler}>
+            <Input
+                id='login-email'
+                name='email'
+                type='e-mail'
+                label='E-mail'
+                value={values.email}
+                onBlur={validateValue}
+                onChange={handleChange}
+                error={errors.email}
+            />
+            <Input
+                id='login-password'
+                name='password'
+                type={'password'}
+                label='Password'
+                value={values.password}
+                onBlur={validateValue}
+                onChange={handleChange}
+                error={errors.password}
+            />
+            <span onClick={forgotPasswordHandler}>Forgot Password</span>
+            <Button title='Submit' type='submit' disabled={disabled} />
+        </form>
     );
 }

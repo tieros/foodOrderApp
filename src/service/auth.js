@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { 
+    createUserWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signInWithEmailAndPassword, 
+    signOut,
+    sendPasswordResetEmail } from 'firebase/auth';
 import { authActions } from '../store/auth';
 import { useDispatch } from 'react-redux';
 import { auth } from '../firebase';
@@ -33,6 +38,11 @@ export const logout = async () => {
     const logout = signOut(auth);
     return logout;
 };
+
+export const resetPassword = async (email) => {
+   const resetPass = sendPasswordResetEmail(auth, email);
+   return resetPass;
+}
 
 function AuthStateOperations(){
    const dispatch = useDispatch();
