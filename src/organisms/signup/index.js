@@ -26,17 +26,19 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler = () => {
+    const submitHandler = async () => {
         const { name, surname, phone, address, email, password } = values;
         try {
-            signUp(email, password, name, surname, phone, address);
-            const { uid } = signUp();
-            dispatch(authActions.setIsLoggedIn(true));
-            dispatch(authActions.setUid(uid));
-            navigate('/home');
+            const user = await signUp(email, password, name, surname, phone, address);
+            if (user) {
+                const { uid } = user;
+                dispatch(authActions.setIsLoggedIn(true));
+                dispatch(authActions.setUid(uid));
+                navigate('/home');
+            }
         } catch (error) {
             console.log(error);
-            dispatch(authActions.setErrorMessage(error))
+            dispatch(authActions.setErrorMessage(error));
         }
     };
 

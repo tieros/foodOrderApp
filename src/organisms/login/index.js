@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import useForm from '../../customhooks/useForm';
-import { resetPassword } from '../../service/auth';
 import ForgotPassword from '../forgotPassword';
 import { useState } from 'react';
 
@@ -19,15 +18,17 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler = async (e) => {
+    const submitHandler =  (e) => {
         e.preventDefault();
         const { email, password } = values;
-        console.log(email)
+
         try {
-            login(email, password);
-            const { uid } = login();
-            dispatch(authActions.setUid(uid));
-            navigate('/');
+            const user = login(email, password);
+            if (user) {
+                const { token } = user;
+                dispatch(authActions.setIsLoggedIn(true));
+                navigate('/');
+            }
 
         } catch (error) {
             console.log(error);
