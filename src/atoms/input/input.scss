@@ -1,12 +1,14 @@
 .invalid {
     border: 1px solid tomato;
 }
-.input-container {
+
+.input-main-container {
     display: flex;
     flex-wrap: wrap;
     width: auto;
     height: 90px;
     margin: 4px;
+    position: relative;
     
     &:nth-child(5){
         display: flex;
@@ -14,30 +16,49 @@
         width: auto;
     }
 
+    label {
+        height: 20px;
+        width: 250px;
+    }
+
+    .input-container {
+
+        position: relative;
+
         input {
-            border-radius: 4px;
-            color: rgb(39, 37, 37);
-            background-color: white;
-            border:1 px solid gray;
-            border-width: 1px;
-            width: 250px;
-            height: 20px;
-            margin: 10px 0 2px;
+        border-radius: 4px;
+        color: rgb(39, 37, 37);
+        background-color: white;
+        border:1 px solid gray;
+        border-width: 1px;
+        width: 250px;
+        height: 25px;
+        margin: 10px 0 2px;
+        padding: 2px 10px;
         }
+
         &input:focus-visible {
         outline: black auto 1px;
         }
-
-        label {
-            height: 20px;
-            width: 250px;
-        }
-
+        
         textarea {
             margin-top: 10px;
             border-radius: 4px;
             height: 50px;
         }
+        
+        span {
+            position: absolute;
+            top: 15px;
+            left: 240px;
+            
+            img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .error-message {

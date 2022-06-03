@@ -3,14 +3,9 @@ import { useSelector } from "react-redux";
 
 export default function IncreaseDecrease(props){
 
-// let storedAmount = useSelector(state => state.cart.items.find(item => item.id === props.id));
-// console.log(storedAmount + 'storedAmount')
-// if (isNaN(storedAmount)) {
-//     storedAmount = 0
-// }
+let storedItem = useSelector(state => state.cart.items.find(item => item.id === props.id));
 
-const [amount, setAmount] = useState(0);
-
+const [amount, setAmount] = useState(storedItem ? storedItem.amount : 0);
 
 const increaseAmount = () => {
     if(amount > 5){
@@ -42,6 +37,5 @@ useEffect(() => {
                 type='number'
             />
             <button onClick={decreaseAmount}> - </button>
-
         </div>
     );}

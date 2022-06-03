@@ -12,11 +12,18 @@ export default function Cart() {
     const dbRef = ref(database);
     const uid = useSelector((state) => state.auth.uid);
     const cartItems = useSelector((state) => state.cart.items);
-    const totalAmountStore = useSelector((state) => state.cart.totalAmount);
+
     const dispatch = useDispatch();
 
     // const totalAmount = `$${totalAmountStore?.toFixed(2)}`;
-    const totalAmount = totalAmountStore;
+    const getTotalAmount = () => {
+        let totalAmount = 0;
+        for (let i = 0; i < cartItems.length; i++) {
+            totalAmount += cartItems[i].price * cartItems[i].amount;
+        }
+        return totalAmount;
+    };
+
     const hasItems = cartItems?.length > 0;
 
     useEffect(() => {
@@ -36,11 +43,9 @@ export default function Cart() {
     };
 
     const cartItemAddHandler = (item) => {
-        dispatch(cartActions.addCartItem(item));
+        dispatch(cartActions.sendToCart(item));
     };
-    const cartItemRemoveHandler = (item) => {
-        dispatch(cartActions.removeCartItem(item));
-    };
+
     const cartItemsList = (
         <ul className='cart-items'>
             {cartItems?.map((item) => (
@@ -49,23 +54,21 @@ export default function Cart() {
                     name={item.name}
                     amount={item.amount}
                     price={item.price}
-                    onRemove={cartItemRemoveHandler.bind(null, item.id)}
                     onAdd={cartItemAddHandler.bind(null, item)}
                 />
             ))}
         </ul>
     );
     return (
-        <>
+        <div className='cart-page-container'>
             {cartItemsList}
             <div className='total'>
                 <span>Total Amount</span>
-                <span>{totalAmount}</span>
+                <span>{getTotalAmount()}</span>
             </div>
-
             <Button onClick={submitOrder}  disabled={!hasItems} title='Order'>
                 Order
             </Button>
-        </>
+        </div>
     );
 }

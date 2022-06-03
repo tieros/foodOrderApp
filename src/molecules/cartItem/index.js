@@ -1,5 +1,5 @@
 import classes from './cartItem.module.scss';
-import Button from '../../atoms/button';
+import CustomButton from '../../atoms/increase-decrease-buttons';
 
 export default function CartItem(props) {
     const price = `$${props.price.toFixed(2)}`;
@@ -14,8 +14,7 @@ export default function CartItem(props) {
                 </div>
             </div>
             <div className={classes.actions}>
-                <Button onClick={props.onRemove}>-</Button>
-                <Button onClick={props.onAdd}>+</Button>
+              <CustomButton id={props.key} onAddToCart={props.onAdd} /> 
             </div>
         </li>
     );
