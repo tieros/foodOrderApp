@@ -40,7 +40,9 @@ export const logout = async () => {
 };
 
 export const resetPassword = async (email) => {
-   const resetPass = sendPasswordResetEmail(auth, email);
+   const resetPass = await sendPasswordResetEmail(auth, email, 
+        { url: 'http://localhost:3000/login'}
+    );
    return resetPass;
 }
 

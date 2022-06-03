@@ -5,9 +5,13 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import useForm from '../../customhooks/useForm';
+import { resetPassword } from '../../service/auth';
+import ForgotPassword from '../forgotPassword';
+import { useState } from 'react';
 
 export default function Login() {
 
+    const [loginMode, setLoginMode] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,12 +34,14 @@ export default function Login() {
         }
     };
 
-    const forgotPasswordHandler = () => {
-        
+    const changeMode = () => {
+        setLoginMode(false)
     }
 
 
     return (
+        <>
+       {!loginMode ? <ForgotPassword /> :
         <form className='login-container' onSubmit={submitHandler}>
             <Input
                 id='login-email'
@@ -57,8 +63,10 @@ export default function Login() {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <span onClick={forgotPasswordHandler}>Forgot Password</span>
+            <span onClick={changeMode}>Forgot Password</span>
             <Button title='Submit' type='submit' disabled={disabled} />
         </form>
+        }
+        </>
     );
 }
