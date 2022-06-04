@@ -1,11 +1,13 @@
-import { Route, Routes } from 'react-router';
 import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router';
 import { Home, Login, Cart, Profile}  from './pages';
 import './App.scss';
 import Navbar from './organisms/navbar';
 
 function App() {
-const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+const isLoggedIn = useSelector(state => state.auth.user.isLoggedIn);
+
   return (
       <div className='App'>
           <Navbar />
@@ -16,7 +18,6 @@ const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
                       <Route path='/login' element={<Login />} />
                     }
                   <Route path='/cart' element={<Cart />} />
-
           </Routes>
       </div>
   );

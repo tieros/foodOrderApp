@@ -12,6 +12,7 @@ export default function Cart() {
     const dbRef = ref(database);
     const uid = useSelector((state) => state.auth.uid);
     const cartItems = useSelector((state) => state.cart.items);
+    const isLoggedIn = useSelector((state) => state.auth.user.isLoggedIn);
 
     const dispatch = useDispatch();
 
@@ -49,9 +50,7 @@ export default function Cart() {
                 <span>Total Amount</span>
                 <span>{getTotalAmount()}</span>
             </div>
-            <Button onClick={submitOrder}  disabled={!hasItems} title='Order'>
-                Order
-            </Button>
+            <Button onClick={submitOrder}  disabled={!hasItems || !isLoggedIn} title='Order' />
         </div>
     );
 }

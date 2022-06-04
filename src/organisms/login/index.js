@@ -25,8 +25,8 @@ export default function Login() {
         try {
             const user = login(email, password);
             if (user) {
-                const { token } = user;
-                dispatch(authActions.setIsLoggedIn(true));
+                const { token, uid } = user;
+                dispatch(authActions.setUser({ token, uid, isLoggedIn: true }));
                 navigate('/');
             }
 

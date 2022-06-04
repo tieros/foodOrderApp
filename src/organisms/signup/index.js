@@ -9,7 +9,7 @@ import { authActions } from '../../store/auth';
 import useForm from "../../customhooks/useForm";
 
 
-export default function Login() {
+export default function Login(props) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,15 +26,19 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler = async () => {
+    const submitHandler = async (e) => {
+        e.preventDefault();
         const { name, surname, phone, address, email, password } = values;
+        if (Object.keys(errors).length !== 0) {
+            props.mode(false);
+            return;
+        }
         try {
             const user = await signUp(email, password, name, surname, phone, address);
             if (user) {
-                const { uid } = user;
-                dispatch(authActions.setIsLoggedIn(true));
-                dispatch(authActions.setUid(uid));
-                navigate('/home');
+                const { uid, token } = user;
+                dispatch(authActions.setUser({ uid, token, isLoggedIn: true }));
+                navigate('/');
             }
         } catch (error) {
             console.log(error);

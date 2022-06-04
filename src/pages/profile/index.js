@@ -4,47 +4,27 @@ import { useNavigate } from "react-router";
 import { getUserInfo, logout } from "../../service/auth";
 import { authActions } from "../../store/auth";
 import Button from "../../atoms/button";
+import { persistor } from "../../store";
+import ProfileInfo from "../../organisms/profileInfo";
 
 export default function Profile(){
-
-    const [userInfo, setUserInfo] = useState();
-
-    const storedUid = useSelector(state => state.auth.uid);
-    const localUserInfo = JSON.parse(localStorage.getItem("user"));
-    const { uid } = localUserInfo;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-      if (storedUid || uid ){
-        getUserInfo(storedUid || uid).then(userInfo => {
-            if(userInfo.exists()){
-                setUserInfo(userInfo.val());
-                // set is loading false
-            } else {
-                console.log('User data does not exist');
-            }
-        }).catch(error => {
-            console.log(error);
-        });
-      }
-    }, [uid, storedUid]);
-
     const logoutHandler = () => {
         try {
             logout();
-            dispatch(authActions.setIsLoggedIn(false));
+            dispatch(authActions.logoutUser());
+            persistor.purge();
             navigate('/');
         } catch (error) {console.log(error)}
     }
 
-    console.log(userInfo);
-
     return (
-        <div>
+        <div className="profile-page-container">
             <h1>Profile</h1>
+            <ProfileInfo />
             <Button title='Logout' onClick={logoutHandler}/>
         </div>
     )

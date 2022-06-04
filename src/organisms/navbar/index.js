@@ -1,10 +1,9 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Navbar(){
 
- const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
- 
+const isLoggedIn = useSelector((state) => state.auth.user.isLoggedIn);
     return (
         <nav className='navbar'>
             <p className='logo'>Logo</p>

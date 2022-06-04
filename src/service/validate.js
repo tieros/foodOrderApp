@@ -16,7 +16,7 @@ export const validate = (values) => {
                 errors[key] = 'Invalid phone number'
             }
         } if (key === 'address') {
-            if(!values[key].length < 10) {
+            if(values[key].trim().length < 10) {
                 errors[key] = 'Address is required'
             }
         } if (key === 'password') {
