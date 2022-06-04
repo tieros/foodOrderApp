@@ -9,7 +9,7 @@ export default function LoginPage() {
     return (
         <div className='container'>
             <h2 className='link-heading'>{linkHeading}</h2>
-            {loginMode ? <Login /> : <SignUp />}
+            {loginMode ? <Login /> : <SignUp mode={setLoginMode}/>}
             <p className="link-text" onClick={() => setLoginMode(prev => !prev)}>{linkText}</p>
         </div>
     );

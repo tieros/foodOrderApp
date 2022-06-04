@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import useForm from '../../customhooks/useForm';
+import ForgotPassword from '../forgotPassword';
+import { useState } from 'react';
 
 export default function Login() {
 
+    const [loginMode, setLoginMode] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -15,27 +18,31 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler = async (e) => {
+    const submitHandler =  (e) => {
         e.preventDefault();
         const { email, password } = values;
-        console.log(email)
+
         try {
-            login(email, password);
-            const { uid } = login();
-            dispatch(authActions.setUid(uid));
-            navigate('/');
+            const user = login(email, password);
+            if (user) {
+                const { token, uid } = user;
+                dispatch(authActions.setUser({ token, uid, isLoggedIn: true }));
+                navigate('/');
+            }
 
         } catch (error) {
             console.log(error);
         }
     };
 
-    const forgotPasswordHandler = () => {
-        
+    const changeMode = () => {
+        setLoginMode(false)
     }
 
 
     return (
+        <>
+       {!loginMode ? <ForgotPassword /> :
         <form className='login-container' onSubmit={submitHandler}>
             <Input
                 id='login-email'
@@ -57,8 +64,10 @@ export default function Login() {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <span onClick={forgotPasswordHandler}>Forgot Password</span>
+            <span onClick={changeMode}>Forgot Password</span>
             <Button title='Submit' type='submit' disabled={disabled} />
         </form>
+        }
+        </>
     );
 }

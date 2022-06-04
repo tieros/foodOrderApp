@@ -9,7 +9,7 @@ import { authActions } from '../../store/auth';
 import useForm from "../../customhooks/useForm";
 
 
-export default function Login() {
+export default function Login(props) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,21 +26,25 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler = () => {
+    const submitHandler = async (e) => {
+        e.preventDefault();
         const { name, surname, phone, address, email, password } = values;
+        if (Object.keys(errors).length !== 0) {
+            props.mode(false);
+            return;
+        }
         try {
-            signUp(email, password, name, surname, phone, address);
-            const { uid } = signUp();
-            dispatch(authActions.setIsLoggedIn(true));
-            dispatch(authActions.setUid(uid));
-            navigate('/home');
+            const user = await signUp(email, password, name, surname, phone, address);
+            if (user) {
+                const { uid, token } = user;
+                dispatch(authActions.setUser({ uid, token, isLoggedIn: true }));
+                navigate('/');
+            }
         } catch (error) {
             console.log(error);
-            dispatch(authActions.setErrorMessage(error))
+            dispatch(authActions.setErrorMessage(error));
         }
     };
-
-    console.log(errors.verifyPassword)
 
     return (
                 <div className='signup-container'>
