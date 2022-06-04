@@ -42,26 +42,9 @@ export default function Cart() {
         dispatch(cartActions.clearCart());
     };
 
-    const cartItemAddHandler = (item) => {
-        dispatch(cartActions.sendToCart(item));
-    };
-
-    const cartItemsList = (
-        <ul className='cart-items'>
-            {cartItems?.map((item) => (
-                <CartItem
-                    key={item.id}
-                    name={item.name}
-                    amount={item.amount}
-                    price={item.price}
-                    onAdd={cartItemAddHandler.bind(null, item)}
-                />
-            ))}
-        </ul>
-    );
     return (
         <div className='cart-page-container'>
-            {cartItemsList}
+            <CartItem />
             <div className='total'>
                 <span>Total Amount</span>
                 <span>{getTotalAmount()}</span>

@@ -10,7 +10,7 @@ const cartSlice = createSlice({
     reducers: {
         
         sendToCart: (state, action) => {
-            const { id, price, amount } = action.payload;
+            const { id, price, amount, name } = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
 
             if (amount === 0) {
@@ -23,6 +23,7 @@ const cartSlice = createSlice({
                 state.items.push({
                     id,
                     price,
+                    name,
                     amount,
                 });
             }
