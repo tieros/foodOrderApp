@@ -42,8 +42,6 @@ export default function Login() {
         }
     };
 
-    console.log(errors.verifyPassword)
-
     return (
                 <div className='signup-container'>
                     <form className='signup-form-container' onSubmit={submitHandler}>

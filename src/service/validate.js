@@ -2,8 +2,8 @@ export const validate = (values) => {
     let errors = {};
 
     Object.keys(values).forEach((key) => {
-        
-        if (key === 'name' || 'surname') {
+
+        if (key === 'name' || key === 'surname') {
             if (!values[key]) {
                 errors[key] = `${key} is required`;
             }
@@ -23,12 +23,16 @@ export const validate = (values) => {
             if(values[key].length < 6) {
                 errors[key] = 'Password must be at least 6 characters'
             }
-        } if (key === 'verifyPassword') {
-            if(values[key] !== values['password']) {
-                errors[key] = 'Passwords must match'
-            }
-        }
+        } 
       })
       
       return errors;
     };
+
+export const validatePasswords = (values) => {
+    let errors = {};
+    if (values.password !== values.verifyPassword) {
+        errors.verifyPassword = 'Passwords must match'
+    }
+    return errors;
+}    

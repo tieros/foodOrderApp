@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { validate } from "../service/validate";
+import { validate, validatePasswords } from "../service/validate";
 
 export default function useForm (initialValues) {
     
@@ -14,30 +14,31 @@ export default function useForm (initialValues) {
         //deletes error msg on Change if value is valid
 
         if (errors[name]) {
-            const error = validate({ [name]: value });
+            console.log('errors/name ' + errors[name])
+            const error = validate({[name]: value });
+            
             if (Object.keys(error).length === 0) {
+                console.log('objectkeys ' + Object.keys(error));
                 let clearErrors = { ...errors };
                 delete clearErrors[name];
-                setErrors((errors) => ({
-                    ...clearErrors,
-                }));
+                setErrors({...clearErrors});
             }
         }
     };
 
     const validateValue = (e) => {
         const { name, value } = e.target;
-        const error = validate({ [name]: value });
-        setErrors((errors) => ({
-            ...errors,
-            ...error,
-        }));
+        if(name !== 'verifyPassword') {
+        const error = validate({[name]: value });
+        setErrors({ ...errors, ...error})
+        } else {
+            const error = validatePasswords({['verifyPassword']: values.verifyPassword, ['password']: values.password});
+            setErrors({ ...errors, ...error})
+        }
     }
 
        useEffect(() => {
-           if (Object.keys(errors).length === 0) {
-               setDisabled(false);
-           } else setDisabled(true);
+           setDisabled(Object.keys(errors).length !== 0);
        }, [errors]);
 
        return { values, errors, disabled, handleChange, validateValue };
