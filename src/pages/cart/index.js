@@ -5,6 +5,7 @@ import { database } from '../../firebase';
 import { cartActions } from '../../store/cart';
 import Button from '../../atoms/button';
 import CartItem from '../../molecules/cartItem';
+import Card from '../../atoms/card';
 
 export default function Cart() {
     const [userData, setUserData] = useState(null);
@@ -36,21 +37,33 @@ export default function Cart() {
     }, [dbRef, uid]);
 
     const submitOrder = async () => {
-        await set(child(dbRef, `orders/${uid}/`), {
-            userData,
-            ordereditems: cartItems,
-        });
-        dispatch(cartActions.clearCart());
+        try {
+            await set(child(dbRef, `orders/${uid}/`), {
+                userData,
+                ordereditems: cartItems,
+            });
+            dispatch(cartActions.clearCart());
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
         <div className='cart-page-container'>
+        <Card>
+            <h2>Shopping Cart</h2>
             <CartItem />
             <div className='total'>
                 <span>Total Amount</span>
-                <span>{getTotalAmount()}</span>
+                <span className='total-amount'>{getTotalAmount() + '$'}</span>
             </div>
-            <Button onClick={submitOrder}  disabled={!hasItems || !isLoggedIn} title='Order' />
+            <Button
+                onClick={submitOrder}
+                disabled={!hasItems || !isLoggedIn}
+                title='Order'
+                className='order-button'
+            />
+        </Card>
         </div>
     );
 }

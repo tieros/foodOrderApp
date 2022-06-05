@@ -64,7 +64,7 @@ export default function Login() {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <span onClick={changeMode}>Forgot Password</span>
+            <span onClick={changeMode} className='forgot-password'>Forgot Password</span>
             <Button title='Submit' type='submit' disabled={disabled} />
         </form>
         }
