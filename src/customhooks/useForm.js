@@ -38,8 +38,11 @@ export default function useForm (initialValues) {
     }
 
        useEffect(() => {
-           setDisabled(Object.keys(errors).length !== 0);
-       }, [errors]);
+           setDisabled(
+               Object.keys(errors).length !== 0 ||
+               !Object.values(values).every((x) => x !== null && x !== ''),
+           );
+       }, [errors, values]);
 
        return { values, errors, disabled, handleChange, validateValue };
 }

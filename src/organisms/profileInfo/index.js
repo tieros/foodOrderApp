@@ -11,6 +11,8 @@ export default function ProfileInfo(){
     
     const [userInfo, setUserInfo] = useState({});
     const [editVersion, setEditVersion] = useState(false);
+    const [profileError, setProfileError] = useState('');
+
     const uid = useSelector((state) => state.auth.user.uid);
 
     useEffect(() => {
@@ -36,7 +38,7 @@ export default function ProfileInfo(){
     const sendDataHandler = (e) => {
         e.preventDefault();
         const dbRef = ref(database);
-            update(child(dbRef, `users/${uid}`), {
+            update(child(dbRef, `users/p`), {
                 name: values.name || name,
                 surname: values.surname || surname,
                 phone: values.phone || phone,
@@ -47,11 +49,13 @@ export default function ProfileInfo(){
             })
             .catch((error) => {
                 console.log(error);
+                setProfileError('Something went wrong!');
             });
     }
 
     return (
         <form className="profile-info-form">
+            <p className="profile-error">{profileError}</p>
             <Input
                 id='profile-name'
                 placeholder={name}
