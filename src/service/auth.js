@@ -12,27 +12,25 @@ import { database } from '../firebase';
 
 const dbRef = ref(database);
 
-export const signUp = async (email, password, name, surname, phone, address) => {
-    let uid;
-    let token;
-    try {
-        const register = await createUserWithEmailAndPassword(auth, email, password);
-        uid = register.user.uid;
-        token = register.user.accessToken;
-    } catch (error) {
-        console.log(`Error occured: ${error}`);
-    }
+export const signUp = async (email, password) => {
 
+    const register = await createUserWithEmailAndPassword(auth, email, password);
+    const uid = register.user.uid;
+    const token = register.user.accessToken;
+
+    return { register, uid, token };
+};
+
+export const addUserDb = async (uid, name, surname, phone, address) => {
     const sendToDb = await set(child(dbRef, `users/${uid}`), {
         name,
         surname,
-        email,
         phone,
         address,
     });
 
-    return { sendToDb, uid, token };
-};
+    return sendToDb;
+}
 
 export const login =  async (email, password) => {
     const login =  await signInWithEmailAndPassword(auth, email, password);

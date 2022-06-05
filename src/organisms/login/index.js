@@ -11,6 +11,7 @@ import { useState } from 'react';
 export default function Login() {
 
     const [loginMode, setLoginMode] = useState(true);
+    const [loginError, setLoginError] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -22,28 +23,27 @@ export default function Login() {
         e.preventDefault();
         const { email, password } = values;
 
-        try {
-            const user = login(email, password);
-            if (user) {
-                const { token, uid } = user;
-                dispatch(authActions.setUser({ token, uid, isLoggedIn: true }));
-                navigate('/');
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        const user = login(email, password)
+        .then(user => {
+            const { token, uid } = user;
+            dispatch(authActions.setUser({ token, uid, isLoggedIn: true }));
+            navigate('/');
+        })
+        .catch(error => {
+            console.log(error)
+            setLoginError(error.message);
+        });
+    }
 
     const changeMode = () => {
         setLoginMode(false)
     }
 
-
     return (
         <>
        {!loginMode ? <ForgotPassword /> :
         <form className='login-container' onSubmit={submitHandler}>
+            <p className='auth-error'>{loginError}</p>
             <Input
                 id='login-email'
                 name='email'
@@ -64,7 +64,7 @@ export default function Login() {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <span onClick={changeMode}>Forgot Password</span>
+            <span onClick={changeMode} className='forgot-password'>Forgot Password</span>
             <Button title='Submit' type='submit' disabled={disabled} />
         </form>
         }

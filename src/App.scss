@@ -8,8 +8,9 @@
 @import './atoms/increase-decrease-buttons/custom-buttons.scss';
 
 // molecules
-@import './molecules/cartItem/cartItem.module.scss';
-@import './molecules/mainText/mainText.module.scss';
+@import './molecules/mealtem/mealItem.scss';
+@import './molecules/cartItem/cartItem.scss';
+@import './molecules/mainText/mainText.scss';
 
 //organisms
 @import './organisms/login/login.scss';

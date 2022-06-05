@@ -1,8 +1,15 @@
 .signup-container {
     display: flex;
-    width: 80vw;
+    flex-direction: column;
+    width: 100%;
     justify-content: center;
     height: 100%;
+
+    .auth-error {
+        margin-left: 24px;
+        color: tomato;
+        font-weight: bold;
+    }
 }
 
 .signup-form-container {
@@ -18,6 +25,11 @@
        
        &:nth-child(5){
            flex-basis: 90%;
+           flex-direction: row;
+           
+           input {
+               width: 530px;
+            }
        }
     } 
         button {
@@ -28,3 +40,43 @@
         }
 }
 
+@media (max-width: 642px) {
+    .container {
+        height: 100% !important;
+    }
+
+    .signup-container {
+        width: 270px;
+    }
+    .signup-form-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        button {
+            margin: 10px auto;
+            flex-basis: 280px;
+        }
+
+        div {
+            flex-basis: 100%;
+            flex-direction: row;
+
+           :nth-child(5) {
+               flex-basis: 100%;
+           }
+        
+    }
+    .input-container .input-main-container{
+            display: flex;
+            justify-content: center;
+    }
+}
+
+.signup-form-container div:nth-child(5) input {
+    width: 250px;
+}
+}

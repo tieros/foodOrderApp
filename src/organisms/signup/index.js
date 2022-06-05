@@ -1,16 +1,17 @@
-import { ref, set, child } from 'firebase/database';
-import { database } from '../../firebase';
+
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
-import { signUp } from '../../service/auth';
-import { useDispatch, useSelector } from 'react-redux';
+import { signUp, addUserDb } from '../../service/auth';
+import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import useForm from "../../customhooks/useForm";
 
 
 export default function Login(props) {
 
+    const [signUpError, setSignUpError] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,22 +34,26 @@ export default function Login(props) {
             props.mode(false);
             return;
         }
-        try {
-            const user = await signUp(email, password, name, surname, phone, address);
-            if (user) {
-                const { uid, token } = user;
-                dispatch(authActions.setUser({ uid, token, isLoggedIn: true }));
-                navigate('/');
-            }
-        } catch (error) {
-            console.log(error);
-            dispatch(authActions.setErrorMessage(error));
-        }
+
+        const user = await signUp(email, password)
+        .then(user =>  {
+            const { uid, token } = user;
+            const addUserToDb =  addUserDb(uid, name, surname, phone, address);
+            dispatch(authActions.setUser({ uid, token, isLoggedIn: true }));
+            navigate('/');
+        })
+        .catch(error => {
+            console.log(error)
+            setSignUpError(error.message);
+            props.mode(false);
+        });
+
     };
 
     return (
                 <div className='signup-container'>
-                    <form className='signup-form-container' onSubmit={submitHandler}>
+                    <p className='auth-error'>{signUpError}</p>
+                    <form className='signup-form-container' onSubmit={submitHandler}>     
                         <Input
                             id="signup-name"
                             name='name'

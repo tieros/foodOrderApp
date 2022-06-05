@@ -1,5 +1,40 @@
 .profile-page-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+
+    h2{
+        align-self: center;
+    }
+
+    .profile-card{
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logout-button {
+        align-self: end;
+    }
+
+    .input-main-container {
+        flex-direction: column;
+
+        label {
+        width: 100px;}
+    }
+
+    .profile-error{
+        color: tomato;
+        font-weight: bold;
+        align-self: flex-start;
+        margin-left: 60px;
+    }
+    
+}
+
+
+@media (max-width: 500px) {
+    .profile-page-container {
+        padding: 20px;
+    }
 }

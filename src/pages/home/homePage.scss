@@ -1,0 +1,14 @@
+@media (max-width: 500px){
+    .meal-buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .inc-dec-buttons {
+        width: 150px;
+        
+        button {
+        padding: 0.1rem 1rem;
+        }
+    }
+}

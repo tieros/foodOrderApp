@@ -1,13 +1,30 @@
 .login-container {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 370px;
     align-items: center;
+    
+    .input-main-container {
+        justify-content: center;
+
+        label {
+            width: 270px;
+        }
+    }
 
     span {
         align-self: flex-start;
         cursor: pointer;
         font-size: small;
         color: brown;
+    }
+
+    .forgot-password {
+        margin: 10px 50px 15px;
+    }
+
+    .auth-error{
+        color: tomato;
+        font-weight: bold;
     }
 }

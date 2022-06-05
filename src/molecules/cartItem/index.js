@@ -1,4 +1,3 @@
-import classes from './cartItem.module.scss';
 import CustomButton from '../../atoms/increase-decrease-buttons';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart';
@@ -11,15 +10,14 @@ const dispatch = useDispatch();
     return (
          <ul className='cart-items'>
             {cartItems?.map((item) => (
-                <li className={classes['cart-item']}>
+                <li className='cart-item'>
                     <div>
                         <h2>{item.name}</h2>
-                        <div className={classes.summary}>
-                            <span className={classes.price}>{item.price}</span>
-                            <span className={classes.amount}>x {item.amount}</span>
+                        <div className='summary'>
+                            <span className='price'>{item.price}</span>
                         </div>
                     </div>
-                    <div className={classes.actions}>
+                    <div className='actions'>
                         <CustomButton id={item.id} onAddToCart={(amount) => {dispatch(cartActions.sendToCart({
                             id: item.id,
                             name: item.name,
