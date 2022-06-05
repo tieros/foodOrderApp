@@ -29,12 +29,14 @@ export default function Cart() {
     const hasItems = cartItems?.length > 0;
 
     useEffect(() => {
+        if(isLoggedIn) {
         get(child(dbRef, `users/${uid}`)).then((snapshot) => {
             if (snapshot.exists) {
                 setUserData(snapshot.val());
             }
         });
-    }, [dbRef, uid]);
+    }
+    }, [dbRef, uid, isLoggedIn]);
 
     const submitOrder = async () => {
         try {
@@ -51,7 +53,7 @@ export default function Cart() {
     return (
         <div className='cart-page-container'>
         <Card>
-            <h2>Shopping Cart</h2>
+            <h2 className='cart-page-header'>Shopping Cart</h2>
             <CartItem />
             <div className='total'>
                 <span>Total Amount</span>
