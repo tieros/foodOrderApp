@@ -1,8 +1,15 @@
 .signup-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
     height: 100%;
+
+    .auth-error {
+        margin-left: 24px;
+        color: tomato;
+        font-weight: bold;
+    }
 }
 
 .signup-form-container {
