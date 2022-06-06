@@ -10,7 +10,7 @@ const dispatch = useDispatch();
     return (
          <ul className='cart-items'>
             {cartItems?.map((item) => (
-                <li className='cart-item'>
+                <li className='cart-item' key={item.id}>
                     <div>
                         <h2>{item.name}</h2>
                         <div className='summary'>

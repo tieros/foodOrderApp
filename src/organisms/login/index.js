@@ -19,20 +19,19 @@ export default function Login() {
 
     const { values, errors, disabled, handleChange, validateValue } = useForm(initialValues);
 
-    const submitHandler =  (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         const { email, password } = values;
 
-        const user = login(email, password)
-        .then(user => {
-            const { token, uid } = user;
-            dispatch(authActions.setUser({ token, uid, isLoggedIn: true }));
+        try {
+            const data = await login(email, password);
+            const {uid, accessToken} = data.user;
+            dispatch(authActions.setUser({ uid, token: accessToken, isLoggedIn: true }));
             navigate('/');
-        })
-        .catch(error => {
-            console.log(error)
-            setLoginError(error.message);
-        });
+        
+        } catch (error) {
+            setLoginError(error.message)
+        }
     }
 
     const changeMode = () => {

@@ -13,12 +13,14 @@ import storage from 'redux-persist/lib/storage';
 import auth from './auth';
 import ui from './ui';
 import cart from './cart';
+import meal from './meals';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
     auth,
     ui,
     cart,
+    meal
 });
 
 const persistConfig = {

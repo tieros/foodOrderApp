@@ -2,44 +2,51 @@ import { useEffect, useState } from 'react';
 import style from './mealsList.module.scss';
 import Card from '../../atoms/card';
 import MealItem from '../../molecules/mealtem';
+import { ref, onValue, child } from 'firebase/database';
+import { database } from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { mealActions } from '../../store/meals';
 
 export default function MealsList() {
-    const [meals, setMeals] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+
+    const reduxMeals = useSelector(state => state.meal.meals);
+
+    const [meals, setMeals] = useState(reduxMeals);
+    const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState(null);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        const fetchMeals = async () => {
-            const response = await fetch(
-                'https://foodorder-afd5a-default-rtdb.firebaseio.com/meals.json',
-            );
+        if (reduxMeals.length === 0) {
+            setIsLoading(true);
+            const dbRef = ref(database);
 
-            if (!response.ok) {
-                throw new Error('Something went wrong!');
-            }
+            onValue(child(dbRef, '/meals'), (snapshot) => {
+                const data = snapshot.val();
+                console.log(data);
+                const loadedMeals = [];
 
-            const responseData = await response.json();
+                for (const key in data) {
+                    loadedMeals.push({
+                        id: key,
+                        name: data[key].name,
+                        description: data[key].description,
+                        price: data[key].price,
+                    });
+                }
 
-            const loadedMeals = [];
+                console.log(loadedMeals);
+                dispatch(mealActions.setMeals(loadedMeals));
+                setMeals(loadedMeals);
+                setIsLoading(false);
+            });
+        }
+    }, [dispatch, meals, reduxMeals]);
 
-            for (const key in responseData) {
-                loadedMeals.push({
-                    id: key,
-                    name: responseData[key].name,
-                    description: responseData[key].description,
-                    price: responseData[key].price,
-                });
-            }
-
-            setMeals(loadedMeals);
-            setIsLoading(false);
-        };
-
-        fetchMeals().catch((err) => {
-            setIsLoading(false);
-            setError(err.message);
-        });
-    }, []);
+    if (meals === null) {
+        setError('Error loading meals');
+    }
 
     if (isLoading) {
         return (
@@ -68,12 +75,10 @@ export default function MealsList() {
   ));
 
     return (
-        <>
-            <section className={style.meals}>
-                <Card>
-                    <li>{mealsList}</li>            
-                </Card>
-            </section>
-        </>
+        <section className={style.meals}>
+            <Card>
+                <ul>{mealsList}</ul>            
+            </Card>
+        </section>
     );
 }
