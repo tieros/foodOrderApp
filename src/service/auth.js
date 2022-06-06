@@ -12,17 +12,14 @@ import { database } from '../firebase';
 
 const dbRef = ref(database);
 
-export const signUp = async (email, password) => {
+export const signUp = (email, password) => {
 
-    const register = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = register.user.uid;
-    const token = register.user.accessToken;
-
-    return { register, uid, token };
+    const register = createUserWithEmailAndPassword(auth, email, password);
+    return register;
 };
 
-export const addUserDb = async (uid, name, surname, phone, address) => {
-    const sendToDb = await set(child(dbRef, `users/${uid}`), {
+export const addUserDb = (uid, name, surname, phone, address) => {
+    const sendToDb = set(child(dbRef, `users/${uid}`), {
         name,
         surname,
         phone,
@@ -32,17 +29,13 @@ export const addUserDb = async (uid, name, surname, phone, address) => {
     return sendToDb;
 }
 
-export const login =  async (email, password) => {
-    const login =  await signInWithEmailAndPassword(auth, email, password);
-    const { uid, accessToken } = login.user;
-    const user = { uid, accessToken };
-
-    return {login };
-
+export const login = (email, password) => {
+    const login = signInWithEmailAndPassword(auth, email, password);
+    return login;
 };
 
-export const getUserInfo = async (uid) => {
-    const userInfo = await get(child(dbRef, `users/${uid}`));
+export const getUserInfo = (uid) => {
+    const userInfo = get(child(dbRef, `users/${uid}`));
     return userInfo;
 }
 

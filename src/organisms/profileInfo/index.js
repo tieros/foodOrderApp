@@ -38,7 +38,7 @@ export default function ProfileInfo(){
     const sendDataHandler = (e) => {
         e.preventDefault();
         const dbRef = ref(database);
-            update(child(dbRef, `users/p`), {
+            update(child(dbRef, `users/${uid}`), {
                 name: values.name || name,
                 surname: values.surname || surname,
                 phone: values.phone || phone,

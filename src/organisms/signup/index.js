@@ -35,19 +35,17 @@ export default function Login(props) {
             return;
         }
 
-        const user = await signUp(email, password)
-        .then(user =>  {
-            const { uid, token } = user;
-            const addUserToDb =  addUserDb(uid, name, surname, phone, address);
-            dispatch(authActions.setUser({ uid, token, isLoggedIn: true }));
+        try{        
+            const data = await signUp(email, password);
+            const { uid, accessToken } = data.user;
+            const addUserToDb =  await addUserDb(uid, name, surname, phone, address);
+            dispatch(authActions.setUser({ uid, token: accessToken, isLoggedIn: true }));
             navigate('/');
-        })
-        .catch(error => {
+       } catch (error) {
             console.log(error)
             setSignUpError(error.message);
             props.mode(false);
-        });
-
+       }
     };
 
     return (
