@@ -7,6 +7,7 @@ import { authActions } from '../../store/auth';
 import useForm from '../../customhooks/useForm';
 import ForgotPassword from '../forgotPassword';
 import { useState } from 'react';
+import { errorMessage } from '../../service/error-message';
 
 export default function Login() {
 
@@ -30,7 +31,7 @@ export default function Login() {
             navigate('/');
         
         } catch (error) {
-            setLoginError(error.message)
+            setLoginError(errorMessage(error.message))
         }
     }
 
