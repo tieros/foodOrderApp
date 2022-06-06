@@ -21,4 +21,36 @@
         .logo {
             cursor: default;
         }
+
+        .cart-link {
+            display: inline-flex;
+            align-items: flex-end;
+        }
+
+        .cart-icon {
+            width: 18px;
+        }
+
+        .bump {
+            animation: bump 300ms ease-out;
+            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+        }
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

@@ -7,7 +7,7 @@ import { signUp, addUserDb } from '../../service/auth';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import useForm from "../../customhooks/useForm";
-
+import { errorMessage } from '../../service/error-message';
 
 export default function Login(props) {
 
@@ -42,8 +42,7 @@ export default function Login(props) {
             dispatch(authActions.setUser({ uid, token: accessToken, isLoggedIn: true }));
             navigate('/');
        } catch (error) {
-            console.log(error)
-            setSignUpError(error.message);
+            setSignUpError(errorMessage(error.message));
             props.mode(false);
        }
     };
