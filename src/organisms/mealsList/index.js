@@ -76,7 +76,7 @@ export default function MealsList() {
 
     return (
         <section className={style.meals}>
-            <Card>
+            <Card className={style['meals-card']}>
                 <ul>{mealsList}</ul>            
             </Card>
         </section>

@@ -8,6 +8,12 @@
     border-bottom: none;
   }
 
+.meal-item-cont {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+} 
+
   .description {
   font-style: italic;
 }
@@ -15,13 +21,19 @@
   .price {
     margin-top: 0.25rem;
     font-weight: bold;
-    color: #ad5502;
+    color: #9f3e2d;
     font-size: 1.25rem;
   }
 }
 
 .meal h3 {
   margin: 0 0 0.25rem 0;
+}
+
+.meal-img {
+  width: 70px;
+  height: 70px;
+  align-self: flex-start;
 }
 
 @media (max-width: 500px){

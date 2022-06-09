@@ -23,3 +23,11 @@
 @import './pages/cart/cartpage.scss';
 @import './pages/home/homePage.scss';
 @import './pages/profile/profilePage.scss';
+
+body {
+    background-color: $secondary-color;
+}
+
+h2, h3 {
+     color: $secondary-color
+}

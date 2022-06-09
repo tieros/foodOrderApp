@@ -12,9 +12,9 @@ const dispatch = useDispatch();
             {cartItems?.map((item) => (
                 <li className='cart-item' key={item.id}>
                     <div>
-                        <h2>{item.name}</h2>
+                        <h3>{item.name}</h3>
                         <div className='summary'>
-                            <span className='price'>{item.price}</span>
+                            <span className='price'>{item.price}$</span>
                         </div>
                     </div>
                     <div className='actions'>

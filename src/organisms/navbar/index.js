@@ -37,7 +37,6 @@ export default function Navbar() {
                     <NavLink to='login'> Login </NavLink>
                 )}
                 <NavLink to='cart' className='cart-link'>
-                    {' '}
                     Cart
                     <img src={cartIcon} className={iconClass} alt='cart-icon' />
                 </NavLink>

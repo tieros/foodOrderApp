@@ -1,3 +1,5 @@
+@import '../../scss/Variables.scss';
+
 .inc-dec-buttons {
     display: flex;
     justify-content: space-evenly;
@@ -21,9 +23,10 @@
     input {
         width: 50px;
         text-align: center;
-        border: 1px solid gray;
+        border: 1px solid #c8c2d6;
         border-radius: 20px;
         font-weight: bold;
+        color: $secondary-color;
     }
 
     //remove arrows from number input

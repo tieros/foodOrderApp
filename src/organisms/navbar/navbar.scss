@@ -1,25 +1,39 @@
+@import '../../scss/Variables.scss';
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    box-shadow: 0 0 4px 0 #c8c2d6b3 inset;
+    border-radius: 4px;
+    height: 80px;
+    // background: #fefefe;
+    background-color: $secondary-color;
     
         ul {
             justify-content: space-around;
             display: inline-flex;
-            width: 200px;
+            width: 250px;
 
         a {
             text-decoration: none;
-            width: 100px;
+            width: 200px;
+            color: #c8c2d6;
+            font-size: large;
             &:hover {
                 color: tomato;
                 font-weight: 700;
+
+                .cart-icon {
+                  filter: invert(51%) sepia(40%) saturate(3246%) hue-rotate(332deg) brightness(101%) contrast(99%);
+                }
             }
         }
         }
 
         .logo {
             cursor: default;
+            color:white;
         }
 
         .cart-link {
@@ -29,11 +43,13 @@
 
         .cart-icon {
             width: 18px;
+            margin-left: 5px;
+            filter: invert(100%) sepia(7%) saturate(514%) hue-rotate(225deg) brightness(115%) contrast(100%);
         }
 
         .bump {
             animation: bump 300ms ease-out;
-            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+            filter: invert(51%) sepia(40%) saturate(3246%) hue-rotate(332deg) brightness(101%) contrast(99%);
         }
 }
 
