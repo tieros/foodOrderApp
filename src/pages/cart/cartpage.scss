@@ -1,11 +1,24 @@
+@import '../../scss/Variables.scss';
+
 .cart-page-container {
-    width: 550px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    padding-top: 40px;
     height: 80vh;
-    justify-content: center;
-    align-items: stretch;
+    justify-content: start;
+    align-items: center;
+    background: url('../../assets/pexels-valeria-.jpg') no-repeat;
+    background-size: 50%;
+    background-position: right bottom;
+    height: 120vh;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 450px;
+      height: 400px;
+    }
         
       h1 {
         align-self: center;
@@ -32,31 +45,25 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 30px 0;
+  color: $secondary-color;
+
 }
 
 .total-amount {
   margin-right: 110px;
 }
 
-@media (max-width: 850px) and (min-width: 750px) {
-  .cart-page-container {
-    width: 450px;
-  }
-  .cart-items {
-    li {
-      width: 400px;
-    }
-  }
-}
 
 @media (max-width: 749px) {
   .cart-page-container {
-    width: 350px; 
+    height: 100vh;
 
     .card{
-      margin-top: 20px;
+      margin: 40px;
+      width: 300px;
+      height: 330px;
     }
 
     h2 {
@@ -69,7 +76,7 @@
   }
   .cart-items {
     li {
-      width: 250px;
+      width: 200px;
     }
     .inc-dec-buttons {
       width: 60px;
