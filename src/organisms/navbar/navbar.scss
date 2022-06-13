@@ -3,23 +3,24 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    box-shadow: 0 0 4px 0 #c8c2d6b3 inset;
-    border-radius: 4px;
+    justify-content: space-between;
     height: 80px;
-    // background: #fefefe;
-    background-color: $secondary-color;
+    background-color: black;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
     
         ul {
-            justify-content: space-around;
+            justify-content: space-evenly;
             display: inline-flex;
-            width: 250px;
+            width: 50%;
 
         a {
             text-decoration: none;
             width: 200px;
-            color: #c8c2d6;
-            font-size: large;
+            color: white;
+            font-size: calc(1rem + 0.3vw);
+            font-weight: 600;
             &:hover {
                 color: tomato;
                 font-weight: 700;
@@ -32,8 +33,8 @@
         }
 
         .logo {
-            cursor: default;
-            color:white;
+            cursor: pointer;
+            width: 80px;
         }
 
         .cart-link {

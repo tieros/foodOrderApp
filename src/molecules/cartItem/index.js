@@ -11,11 +11,9 @@ const dispatch = useDispatch();
          <ul className='cart-items'>
             {cartItems?.map((item) => (
                 <li className='cart-item' key={item.id}>
-                    <div>
+                    <div className='summary'>
                         <h3>{item.name}</h3>
-                        <div className='summary'>
-                            <span className='price'>{item.price}$</span>
-                        </div>
+                        <span className='price'>{item.price}$</span>
                     </div>
                     <div className='actions'>
                         <CustomButton id={item.id} onAddToCart={(amount) => {dispatch(cartActions.sendToCart({

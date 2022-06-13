@@ -1,11 +1,8 @@
-import MainText from '../../molecules/mainText';
-import MealsList from '../../organisms/mealsList';
+import Hero from '../../organisms/hero';
 
 export default function Home(){
-    return(
-
-    <section className='home-section'>
-        <MainText />
-        <MealsList />
-    </section>
-)}
+    return (
+        <section className='home-section'>
+            <Hero />
+        </section>
+    );}

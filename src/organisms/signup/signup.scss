@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     justify-content: center;
-    height: 100%;
 
     .auth-error {
         margin-left: 24px;
@@ -40,21 +39,18 @@
         }
 }
 
-@media (max-width: 642px) {
-    .container {
-        height: 100% !important;
+@media (max-width: 730px) {
+    
+    .signup-container {
+        align-items: center;
     }
 
-    .signup-container {
-        width: 270px;
-    }
     .signup-form-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 50%;
 
         button {
             margin: 10px auto;
@@ -80,3 +76,5 @@
     width: 250px;
 }
 }
+
+

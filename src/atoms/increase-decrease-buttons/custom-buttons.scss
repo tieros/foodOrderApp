@@ -3,15 +3,16 @@
 .inc-dec-buttons {
     display: flex;
     justify-content: space-evenly;
-    width: 170px;
+    max-width: 70%;
 
     button {
+        
         font: inherit;
         cursor: pointer;
-        background-color: tomato;
+        background-color: #FF5233;
         border: 1px solid tomato;
         color: white;
-        padding: 0.1rem 1.5rem;
+        width: calc(100% - 1rem);
         border-radius: 20px;
         font-weight: bold;
             :hover, :active {
@@ -21,12 +22,12 @@
         }
 
     input {
-        width: 50px;
+        width: calc(100% - 1rem);
         text-align: center;
-        border: 1px solid #c8c2d6;
+        border: 1px solid #222222b8;
         border-radius: 20px;
         font-weight: bold;
-        color: $secondary-color;
+        color: #222222;
     }
 
     //remove arrows from number input
