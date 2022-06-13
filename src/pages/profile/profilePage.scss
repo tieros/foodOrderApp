@@ -1,13 +1,20 @@
 .profile-page-container {
     display: flex;
     justify-content: center;
+    height: calc(100vh - 97px);
+    width: 100vw;
+    overflow: scroll;
+    position: fixed;
+    bottom: 0;
+    margin-top: 35px;
 
     h2{
         align-self: center;
     }
 
     .profile-card{
-        width: 500px;
+        width: 80%;
+        max-width: 500px;
         display: flex;
         flex-direction: column;
     }
@@ -30,11 +37,4 @@
         margin-left: 60px;
     }
     
-}
-
-
-@media (max-width: 500px) {
-    .profile-page-container {
-        padding: 20px;
-    }
 }

@@ -1,5 +1,6 @@
 //root
 @import './scss/Variables.scss';
+@import './scss/typography.scss';
 
 //atoms
 @import './atoms/button/buttons.scss';
@@ -17,17 +18,29 @@
 @import './organisms/signup/signup.scss';
 @import './organisms/navbar/navbar.scss';
 @import './organisms/profileInfo/profileInfo.scss';
+@import './organisms/hero/hero.scss';
 
 //pages 
+@import './pages/menu/menu.scss';
 @import './pages/login/loginPage.scss';
 @import './pages/cart/cartpage.scss';
-@import './pages/home/homePage.scss';
 @import './pages/profile/profilePage.scss';
 
 body {
-    background-color: $secondary-color;
+   background-color: $primary-color;
 }
 
-h2, h3 {
-     color: $secondary-color
+::-webkit-scrollbar-track {
+border-radius: 10px;
+background-color: #22222200;
+
+}
+::-webkit-scrollbar{
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   -webkit-box-shadow: inset 0 0 6px rgb(177, 165, 165);
+	background-color:  #000000;
 }

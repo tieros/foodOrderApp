@@ -1,7 +1,8 @@
 import CustomButton from '../../atoms/increase-decrease-buttons';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart';
-import img from '../../assets/m1.jpg';
+import Card from '../../atoms/card';
+import img from '../../assets/hero.png';
 
 export default function MealItem(props) {
 
@@ -20,19 +21,18 @@ export default function MealItem(props) {
      }
 
        return (
-           <li className='meal'>
-               <div className='meal-item-cont'>
-                   <div><img src={img} alt={name} className='meal-img' /></div>
-                   <div>
+        <Card className='menu-items'>
+            <li className='meal'>
+                <img src={img} alt={name} className='meal-img' />
+                <div className='meal-item-info'>
                         <h3>{name}</h3>
-                        <div className='description'>{description}</div>
-                        <div className='price'>{price}$</div>
-                   </div>
+                        <p className='description'>{description}</p>
+                        <p className='price'>{price}$</p>
                </div>
-               <div className='meal-buttons-container'>
-                   <CustomButton id={id} onAddToCart={sendToCartHandler} 
-                />
+               <div className='meal-item-buttons'>
+               <CustomButton id={id} onAddToCart={sendToCartHandler} />
                </div>
            </li>
+        </Card>
        );
  }

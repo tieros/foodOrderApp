@@ -1,0 +1,17 @@
+.menu-cont {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: url("../../assets/hamburger-yellow.png");
+    background-size: 40%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
+    width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+
+}
+

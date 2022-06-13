@@ -6,9 +6,16 @@
 .container {
     display: flex;
     flex-direction: column;
+    background: url('../../assets/hamburger-yellow.png');
+    background-size: 5%;
+    background-repeat: repeat;
+    height: calc(100vh - 77px);
+    bottom: 0;
+    position: fixed;
+    width: 100vw;
     align-items: center;
+    overflow: hidden;
     justify-content: center;
-    height: 90vh;
 }
 
 .sign-in-up-card {
@@ -17,8 +24,23 @@
     align-items: center;
 }
 
-@media (max-width: 400px){
+@media (max-width: 730px){
+
+    .container {
+        overflow: scroll;
+        justify-content: flex-start;
+        padding-top: 150px;
+        
+        .sign-in-up-card {
+            margin-top: 36px;
+            width: calc(80% - 40px);
+            height: max-content;
+        }
+    }
+}
+
+@media (max-width: 500px) {
     .sign-in-up-card {
-        width: 300px;
+        padding: 30px;
     }
 }

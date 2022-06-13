@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import cartIcon from '../../assets/cartIcon.svg';
+import logo from '../../assets/logo.png';
 
 export default function Navbar() {
     const [iconAnimated, setIconAnimated] = useState(false);
@@ -28,9 +29,11 @@ export default function Navbar() {
 
     return (
         <nav className='navbar'>
-            <p className='logo'>Logo</p>
+                <NavLink to='/'> 
+                <img className='logo' src={logo} alt='company-logo' />
+                </NavLink>
             <ul>
-                <NavLink to='/'> Menu </NavLink>
+                <NavLink to='/menu'> Menu </NavLink>
                 {isLoggedIn ? (
                     <NavLink to='profile'> Profile </NavLink>
                 ) : (
