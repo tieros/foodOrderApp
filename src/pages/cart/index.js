@@ -1,4 +1,4 @@
-import { set, child, ref } from 'firebase/database';
+import { child, ref, push } from 'firebase/database';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { database } from '../../firebase';
@@ -7,6 +7,7 @@ import Button from '../../atoms/button';
 import CartItem from '../../molecules/cartItem';
 import Card from '../../atoms/card';
 import { getUserInfo } from '../../service/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
     const [userData, setUserData] = useState({});
@@ -18,6 +19,7 @@ export default function Cart() {
     const isLoggedIn = useSelector((state) => state.auth.user.isLoggedIn);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const getTotalAmount = () => {
         let totalAmount = 0;
@@ -42,11 +44,11 @@ export default function Cart() {
             }
         }, [isLoggedIn, uid]);
 
-    console.log(isLoggedIn)
+
     const submitOrder = async () => {
-        console.log(userData, cartItems);
+
         try {
-            await set(child(dbRef, `orders/${uid}`), {
+            await push(child(dbRef, `orders/`), {
                 userData,
                 ordereditems: cartItems,
             });
@@ -58,13 +60,21 @@ export default function Cart() {
         }
     };
 
-    const orderFeedback = orderSuccess ? <h2>Order Successful</h2> : <h2>Something went wrong</h2>;
+    const orderFeedback = () => {
+        if (orderSuccess) {
+            setTimeout(() => {
+                navigate('/');
+            }, 3000);
+            return <h2>Order Successful</h2>;
+        } else return <h2>Something went wrong</h2>;
+    };
+
 
     return (
         <div className='cart-page-container'>
             <Card>
                 {orderSuccess !== null ? (
-                    orderFeedback
+                    orderFeedback()
                 ) : (
                     <>
                         <h2 className='cart-page-header'>Shopping Cart</h2>

@@ -26,12 +26,13 @@
     justify-content: center;
     width: 100vw;
 
-    .left {
+    .right {
         @include hero-section(black);
-            align-items: flex-start;
+            align-items: flex-end;
 
         h2 {
             @include title($primary-color);
+            text-shadow: 1px 1px $primary-color;
         }
         
         div {
@@ -48,16 +49,19 @@
         }
     }
 
-    .right {
+    .left {
         @include hero-section($primary-color);
         align-items: flex-end;
         background: url("../../assets/hamburger-yellow.png"), $primary-color;
         background-size: 10%;
         background-repeat: repeat;
+        align-items: flex-start;
 
         h2 {
             @include title(black);
             text-align: center;
+            text-shadow: 1px 1px black;
+            padding-left: 2%;
         }
     }
 
@@ -71,7 +75,16 @@
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 744px){
+
+    .hero {
+        flex-wrap: wrap;
+
+        .left, .right{
+            height: 50vh;
+            align-items: center;
+        }
+    }
     .hero h2 {
         text-align: start;
         font-size: 0.5rem;

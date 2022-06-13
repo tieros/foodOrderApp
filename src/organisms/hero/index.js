@@ -9,14 +9,15 @@ const navigate = useNavigate();
     return (
         <section className='hero'>
             <div className='left'>
-                <div>
-                    <h2 className='left-title'>Best Hamburger In Town!</h2>
-                    <Button title='Order Now!' onClick={() => navigate('/menu')}/>
-                </div>
+                <h2 className='left-title'>Yummy Hamburgers</h2>
             </div>
             <img src={hamburger} alt='hamburger' />
+
             <div className='right'>
-                <h2 className='right-title'>Tiera Hamburgers</h2>
+                <div>
+                    <h2 className='right-title'>Best Hamburger In Town!</h2>
+                    <Button title='Order Now!' onClick={() => navigate('/menu')} />
+                </div>
             </div>
         </section>
     );
