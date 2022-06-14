@@ -1,6 +1,6 @@
 
 .meals {
-  padding: 50px 35px;
+  padding: 0px 35px;
   animation: meals-appear 1s ease-out forwards;
   list-style: none;
   display: flex;
@@ -37,10 +37,15 @@
   }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 500px) {
 
+  .meals {
+    padding: 50px 35px;
+  }
 }
 @media (max-width: 620px){
 
+  .meals {
+    padding: 30px 35px;
+  }
 }
-
