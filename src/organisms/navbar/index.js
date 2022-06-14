@@ -33,7 +33,7 @@ export default function Navbar() {
                 <img className='logo' src={logo} alt='company-logo' />
                 </NavLink>
             <ul>
-                <NavLink to='/menu'> Menu </NavLink>
+                <NavLink to='menu'> Menu </NavLink>
                 {isLoggedIn ? (
                     <NavLink to='profile'> Profile </NavLink>
                 ) : (
