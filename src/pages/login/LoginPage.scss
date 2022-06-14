@@ -32,7 +32,7 @@
         padding-top: 150px;
         
         .sign-in-up-card {
-            margin-top: 36px;
+            margin-top: 10%;
             width: calc(80% - 40px);
             height: max-content;
         }
@@ -41,6 +41,6 @@
 
 @media (max-width: 500px) {
     .sign-in-up-card {
-        padding: 30px;
+        margin-top: 10%;
     }
 }

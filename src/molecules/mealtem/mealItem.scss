@@ -19,7 +19,7 @@
   }
   
   .meal-item-info {
-    padding: 5% 0 5% 20%;
+    padding: 15% 0% 10% 25%;
   }
 
   .description {
@@ -34,6 +34,11 @@
     font-weight: bold;
     color: tomato;
     font-size: 1.25rem;
+  }
+
+  .meal-item-buttons {
+    display: flex;
+    justify-content: center;
   }
 
 }
@@ -70,7 +75,11 @@
   }
 
   .meal h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .meal p {
+    font-size: 0.8rem;
   }
 }
 
