@@ -40,6 +40,9 @@
 }
 
 @media (max-width: 500px) {
+    .container {
+        height: calc(100vh - 127px);
+    }
     .sign-in-up-card {
         margin-top: 10%;
     }
